@@ -7,8 +7,7 @@ public class Example {
 
         for (Competitor competitor : competitors) {
             for (Obstacle obstacle : obstacles) {
-                competitor.overcome(obstacle);
-                if (competitor.isFailObstacle()) break;
+                if (!competitor.overcome(obstacle)) break;
             }
             System.out.println();
         }

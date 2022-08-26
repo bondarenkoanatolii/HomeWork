@@ -5,7 +5,6 @@ public abstract class Competitor {
     final private String name;
     final private double limitRun;
     final private double limitJump;
-    private boolean isFailObstacle;
 
     public Competitor(String category, String name, double limitRun, double limitJump) {
         this.category = category;
@@ -14,32 +13,29 @@ public abstract class Competitor {
         this.limitJump = limitJump;
     }
 
-    public boolean isFailObstacle() {
-        return isFailObstacle;
-    }
-
-    public void overcome(Obstacle obstacle) {
+    public boolean overcome(Obstacle obstacle) {
         if (obstacle instanceof Wall) {
-            jump((Wall) obstacle);
+            return jump((Wall) obstacle);
         } else if (obstacle instanceof RunningTrack) {
-            run((RunningTrack) obstacle);
-        }
+            return run((RunningTrack) obstacle);
+        } else return false; // unknown obstacle
     }
 
-    private void jump(Wall wall){
-        action(wall.getName(), wall.getHeight(), limitJump);
+    private boolean jump(Wall wall){
+        return action(wall.getName(), wall.getHeight(), limitJump);
     }
 
-    private void run(RunningTrack track){
-        action(track.getName(), track.getLength(), limitRun);
+    private boolean run(RunningTrack track){
+        return action(track.getName(), track.getLength(), limitRun);
     }
 
-    private void action(String nameObstacle, double valueObstacle, double limit) {
+    private boolean action(String nameObstacle, double valueObstacle, double limit) {
         if (limit > valueObstacle) {
             printOKResultCompetition(nameObstacle, valueObstacle);
+            return true;
         } else {
             printFailResultCompetition(nameObstacle, valueObstacle, limit);
-            isFailObstacle = true;
+            return false;
         }
     }
 
