@@ -1,7 +1,6 @@
 package com.hillel.anatoliibondarenko.homework12;
 
 public class Author {
-    // private int id;
     private String name;
     private String lastName;
 

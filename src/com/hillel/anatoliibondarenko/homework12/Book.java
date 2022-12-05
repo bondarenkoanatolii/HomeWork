@@ -1,8 +1,7 @@
 package com.hillel.anatoliibondarenko.homework12;
 
 public class Book {
-  //  private int id;
-    private String title;
+   private String title;
     private Author author;
 
   @Override
